@@ -12,7 +12,7 @@
 <body>
     <nav class="navbar bg-primary" data-bs-theme="dark">
         <div class="container-fluid">
-            <span class="navbar-brand mb-0 h1">楽器</span>
+            <span class="navbar-brand mb-0 h1">楽器<span>
         </div>
     </nav>
     <div class="container">
@@ -21,10 +21,7 @@
                 <div class="mb-3"></div>
                 <label for="brand" class="form-label">ギター</label>
                 <select class="form-select" id="brand" aria-label="Default select example">
-                    <option selected>アコースティック</option>
-                    <option value="1">ストラト</option>
-                    <option value="2">テレキャスター</option>
-                    <option value="3">SG</option>
+                    <option th:each="brand : ${brands}" th:text="${brand.brandName}" th:value="${brand.brandId}" ></option>
                 </select>
             </div>
             <div class="col">
@@ -43,23 +40,23 @@
         <div class="row">
             <div class="col">
                 <table class="table table-dark table-striped mt-3">
-                    <thead>
-                        <tr>
-                            <th scope="col">メーカー</th>
-                            <th scope="col">名前</th>
-                            <th scope="col">材質</th>
-                            <th scope="col">価格</th>
-                            <th scope="col">コメント</th>
-                        </tr>
+                    <tr>
+                        <th scope="col">メーカー</th>
+                        <th scope="col">名前</th>
+                        <th scope="col">材質</th>
+                        <th scope="col">ボディ構造</th>
+                        <th scope="col">価格</th>
+                        <th scope="col">コメント</th>
+                    </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th scope="row">ギブソン</th>
-                            <td>ハミングバード</td>
-                            <td>マホガニー</td>
-                            <td>1000000</td>
-                            <td>めっちゃええ感じ</td>
-
+                        <tr th:each="Instrument :${instruments}" th:object="${Instrument}">
+                            <th scope="row" th:text="*{brand}"></th>
+                            <td th:text="*{name}"></td>
+                            <td th:text="*{material}"></td>
+                            <td th:text="*{body}"></td>
+                            <td th:text="*{price}"></td>
+                            <td th:text="*{comment}"></td>
                         </tr>
                     </tbody>
                 </table>
