@@ -37,7 +37,7 @@ public class CatalogController {
             model.addAttribute("brands", brands);
             model.addAttribute("instruments", instruments);
         
-            log.info("instruments: {}", instruments);
+            log.debug("instruments: {}", instruments);
             return "inst_catalog_list";
         }
         
