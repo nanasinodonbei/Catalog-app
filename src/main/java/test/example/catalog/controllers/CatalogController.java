@@ -8,9 +8,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import lombok.extern.slf4j.Slf4j;
 import test.example.catalog.bean.Brand;
 import test.example.catalog.bean.Instrument;
 
+@Slf4j
 @Controller
 public class CatalogController {
 
@@ -35,6 +37,7 @@ public class CatalogController {
             model.addAttribute("brands", brands);
             model.addAttribute("instruments", instruments);
         
+            log.debug("instruments: {}", instruments);
             return "inst_catalog_list";
         }
         
