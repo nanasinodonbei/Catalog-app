@@ -1,23 +1,23 @@
-// package test.example.catalog.bean;
+package test.example.catalog.bean;
 
-// import lombok.AllArgsConstructor;
-// import lombok.Data;
-// import lombok.NoArgsConstructor;
-
-
-// /**
-//  * ギターのメーカー（ブランド）
-//  */
-
-// @Data
-// @AllArgsConstructor
-// @NoArgsConstructor
-// public class Brand {
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 
-//     //ブランドID
-//     private String burandId;
-//     //ブランド名
-//     private String brandName;
+/**
+ * ギターのメーカー（ブランド）
+ */
 
-// }
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class Brand {
+
+
+    //ブランドID
+    private String brandId;
+    //ブランド名
+    private String brandName;
+
+}
