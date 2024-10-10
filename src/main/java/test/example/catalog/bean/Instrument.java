@@ -16,6 +16,8 @@ public class Instrument {
 
 // ギターID
 private Integer id;
+// ブランドID
+private String brandId;
 //ギター名前
 private String name;
 // ブランド

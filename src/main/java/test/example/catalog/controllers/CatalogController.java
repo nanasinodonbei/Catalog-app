@@ -29,9 +29,9 @@ public class CatalogController {
             brands.add(new Brand("3", "グレッチ")); 
         
             List<Instrument> instruments = new ArrayList<>();
-            instruments.add(new Instrument(1, "ハミングバード", "ギブソン","木", "?", 10000, "よい", null, null)); 
-            instruments.add(new Instrument(2, "ハミングバード2", "レスポール","木", "?", 103000, "めっちゃよい", null, null)); 
-            instruments.add(new Instrument(3, "Gretsch G5655TG Electromatic", "グレッチ","木", "?", 1555000, "おそらくよい", null, null)); 
+            instruments.add(new Instrument(1,"1", "ハミングバード", "ギブソン","木", "?", 10000, "よい", null, null)); 
+            instruments.add(new Instrument(2,"2", "ハミングバード2", "レスポール","木", "?", 103000, "めっちゃよい", null, null)); 
+            instruments.add(new Instrument(3,"3", "Gretsch G5655TG Electromatic", "グレッチ","木", "?", 1555000, "おそらくよい", null, null)); 
 
             // モデルにブランドと楽器を追加することを考慮
             model.addAttribute("brands", brands);
