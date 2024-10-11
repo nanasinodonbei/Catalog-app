@@ -1,4 +1,4 @@
-package test.example.catalog.bean;
+package test.example.catalog.beans;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

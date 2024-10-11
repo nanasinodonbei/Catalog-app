@@ -1,0 +1,15 @@
+spring:
+    datasource:
+        url: "jdbc:mysql://localhost:3306/catalogdb"
+        username: develop
+        password: develop
+        
+logging:
+  level:
+    root: info
+file:
+    name: app.log 
+logback:
+    rollingpolicy:
+        max-file-size: 1MB
+

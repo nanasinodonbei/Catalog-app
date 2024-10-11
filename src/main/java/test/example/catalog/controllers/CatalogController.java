@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import lombok.extern.slf4j.Slf4j;
-import test.example.catalog.bean.Brand;
-import test.example.catalog.bean.Instrument;
+import test.example.catalog.beans.Brand;
+import test.example.catalog.beans.Instrument;
 
 @Slf4j
 @Controller
