@@ -51,7 +51,7 @@
                     </thead>
                     <tbody>
                         <tr th:each="Instrument :${instruments}" th:object="${Instrument}">
-                            <th scope="row" th:text="*{brand}"></th>
+                            <th scope="row" th:text="*{brand.brandName}"></th>
                             <td th:text="*{name}"></td>
                             <td th:text="*{material}"></td>
                             <td th:text="*{body}"></td>

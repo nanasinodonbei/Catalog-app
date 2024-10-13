@@ -1,4 +1,4 @@
-package test.example.catalog.bean;
+package test.example.catalog.beans;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,8 +20,8 @@ private Integer id;
 private String brandId;
 //ギター名前
 private String name;
-// ブランド
-private String brand;
+//ブランド
+private Brand brand;
 //材質　
 private String material;
 // ボディ構造

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="test.example.catalog.mappers.InstrumentMapper">
+  <resultMap id="instMap" type="test.example.catalog.beans.Instrument" autoMapping="true">
+    <association property="brand" javaType="test.example.catalog.beans.Brand" autoMapping="true">
+    </association>
+</resultMap>
+  <select id="selectAll" resultMap="instMap">
+    SELECT
+    instruments.id
+    , instruments.name
+    , instruments.material
+    , instruments.body
+    , instruments.price
+    , instruments.comment
+    , brand.brand_name 
+    FROM
+        instruments 
+        LEFT OUTER JOIN brand 
+          ON instruments.brand_id = brand.brand_id 
+    ORDER BY
+        id;
+ </select>
+</mapper>
