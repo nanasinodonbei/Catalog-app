@@ -19,10 +19,9 @@ public class InstrumentService {
     @Autowired
     BrandMapper brandMapper;
 
-    public List<Instrument> getInst() {
+    public List<Instrument> getInst(SearchCondition condition) {
         // instrumentMapperを使ってselectAll()を呼び出す
-        return instrumentMapper.selectAll();
-    }
+        return instrumentMapper.selectByCondition(condition);
 
     public List<Brand> getBrands(){
         return brandMapper.selectAll();

@@ -5,7 +5,7 @@
     <association property="brand" javaType="test.example.catalog.beans.Brand" autoMapping="true">
     </association>
 </resultMap>
-  <select id="selectAll" resultMap="instMap">
+  <select id="selectByCondition" resultMap="instMap">
     SELECT
     instruments.id
     , instruments.name
