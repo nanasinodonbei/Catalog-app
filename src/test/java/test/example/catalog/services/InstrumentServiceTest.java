@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -32,14 +34,28 @@ public class InstrumentServiceTest {
 //         assertThat(instrument.getBrand().getBrandName()).isEqualTo("Fender");
 //    }
 @DisplayName("ギターの除法を取得　条件:brandID")
-@Test
-void test001(){
+@ParameterizedTest
+@CsvSource({"01,Fender","02,Gibson","03,Ibanez"})
+void test001(String brandId,String brandName){
     SearchCondition condition = new SearchCondition();
-    condition.setBrandId("01");
+    condition.setBrandId(brandId);
 
     List<Instrument> insts = instrumentService.getInst(condition);
+    assertThat(insts.size()).isGreaterThanOrEqualTo(1);
     for(Instrument inst : insts){
-        assertThat(inst.getBrand().getBrandName()).isEqualTo("Fender");
+        assertThat(inst.getBrand().getBrandName()).isEqualTo(brandName);
+    }
+}
+
+@DisplayName("ギターの除法を取得　条件:ID 該当なし")
+@Test
+void test002(){
+    SearchCondition condition = new SearchCondition();
+    condition.setBrandId("99");
+
+    List<Instrument> insts = instrumentService.getInst(condition);
+    assertThat(insts.size()).isEqualTo(0);
+    {
     }
 }
 }
