@@ -18,6 +18,8 @@
         instruments 
         LEFT OUTER JOIN brand 
           ON instruments.brand_id = brand.brand_id 
+    WHERE 
+       instruments.brand_id = #{brandId}
     ORDER BY
         id;
  </select>
