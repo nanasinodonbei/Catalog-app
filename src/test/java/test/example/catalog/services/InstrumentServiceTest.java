@@ -58,4 +58,31 @@ void test002(){
     {
     }
 }
+
+@DisplayName("ギターの除法を取得　条件:完全一致")
+@ParameterizedTest
+@CsvSource({"Stratocaster","Les Paul","Telecaster"})
+void test003(String name){
+    SearchCondition condition = new SearchCondition();
+    condition.setKeyword(name);
+
+    List<Instrument> insts = instrumentService.getInst(condition);
+    assertThat(insts.size()).isGreaterThanOrEqualTo(1);
+    for(Instrument inst : insts){
+        assertThat(inst.getName()).isEqualTo(name);
+    }
+}
+@DisplayName("ギターの除法を取得　条件:部分一致")
+@ParameterizedTest
+@CsvSource({"Strato,Stratocaster","Telecas,Telecaster","Paul,Les Paul"})
+void test004(String keyword,String name){
+    SearchCondition condition = new SearchCondition();
+    condition.setKeyword(keyword);
+
+    List<Instrument> insts = instrumentService.getInst(condition);
+    assertThat(insts.size()).isGreaterThanOrEqualTo(1);
+    for(Instrument inst : insts){
+        assertThat(inst.getName()).isEqualTo(name);
+    }
+}
 }

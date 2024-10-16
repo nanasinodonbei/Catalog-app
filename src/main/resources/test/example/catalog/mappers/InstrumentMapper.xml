@@ -18,8 +18,14 @@
         instruments 
         LEFT OUTER JOIN brand 
           ON instruments.brand_id = brand.brand_id 
-    WHERE 
-       instruments.brand_id = #{brandId}
+    <where>
+      <if test="brandId != null">
+      AND instruments.brand_id = #{brandId}
+      </if>
+      <if test="keyword != null">
+      AND instruments.name  LIKE CONCAT ('%', #{keyword}, '%')
+      </if>
+    </where>
     ORDER BY
         id;
  </select>
