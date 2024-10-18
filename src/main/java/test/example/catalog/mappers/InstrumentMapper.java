@@ -12,8 +12,18 @@ public interface InstrumentMapper {
 
     /**
      * ギターの情報を検索する
-     * @param condition 
+     * 
+     * @param condition
      * @return
      */
     public List<Instrument> selectByCondition(SearchCondition condition);
+
+    /**
+     * 主キーで検索をする
+     * 
+     * @param id ギターID
+     * @return　ギター情報
+     */
+    public List<Instrument> selectById(int id);
+
 }

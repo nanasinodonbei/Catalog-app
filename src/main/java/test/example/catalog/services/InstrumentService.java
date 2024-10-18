@@ -22,8 +22,10 @@ public class InstrumentService {
     BrandMapper brandMapper;
 
     public List<Instrument> getInst(SearchCondition condition) {
-        // instrumentMapperを使ってselectAll()を呼び出す
         return instrumentMapper.selectByCondition(condition);
+    }
+    public List<Instrument> getInst(int id) {
+        return instrumentMapper.selectById(id);
     }
 
     public List<Brand> getBrands(){

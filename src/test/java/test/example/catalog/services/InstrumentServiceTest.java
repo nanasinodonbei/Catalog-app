@@ -33,7 +33,7 @@ public class InstrumentServiceTest {
 //         assertThat(instrument.getPrice()).isEqualTo(120000);
 //         assertThat(instrument.getBrand().getBrandName()).isEqualTo("Fender");
 //    }
-@DisplayName("ギターの除法を取得　条件:brandID")
+@DisplayName("ギターの一覧を取得　条件:ブランドID")
 @ParameterizedTest
 @CsvSource({"01,Fender","02,Gibson","03,Ibanez"})
 void test001(String brandId,String brandName){
@@ -47,7 +47,7 @@ void test001(String brandId,String brandName){
     }
 }
 
-@DisplayName("ギターの除法を取得　条件:ID 該当なし")
+@DisplayName("ギターの一覧を取得　条件:ブランドID 該当なし")
 @Test
 void test002(){
     SearchCondition condition = new SearchCondition();
@@ -59,7 +59,7 @@ void test002(){
     }
 }
 
-@DisplayName("ギターの除法を取得　条件:完全一致")
+@DisplayName("ギターの一覧を取得　条件:完全一致")
 @ParameterizedTest
 @CsvSource({"Stratocaster","Les Paul","Telecaster"})
 void test003(String name){
@@ -72,7 +72,7 @@ void test003(String name){
         assertThat(inst.getName()).isEqualTo(name);
     }
 }
-@DisplayName("ギターの除法を取得　条件:部分一致")
+@DisplayName("ギターの一覧を取得　条件:部分一致")
 @ParameterizedTest
 @CsvSource({"Strato,Stratocaster","Telecas,Telecaster","Paul,Les Paul"})
 void test004(String keyword,String name){
@@ -83,6 +83,66 @@ void test004(String keyword,String name){
     assertThat(insts.size()).isGreaterThanOrEqualTo(1);
     for(Instrument inst : insts){
         assertThat(inst.getName()).isEqualTo(name);
+    }
+}
+
+@DisplayName("ギターの一覧を取得　条件:ブランドID　該当なし")
+@Test
+void test005(){
+    SearchCondition condition = new SearchCondition();
+    condition.setKeyword("存在しないギター");
+
+    List<Instrument> insts = instrumentService.getInst(condition);
+    assertThat(insts.size()).isEqualTo(0);
+    {
+    }
+}
+
+@DisplayName("ギターの一覧を取得　条件ブランドID, バイク名")
+@ParameterizedTest
+@CsvSource({"01,Strato,Stratocaster","01,Telecas,Telecaster","02,Paul,Les Paul"})
+void test006(String brandId ,String keyword,String name){
+    SearchCondition condition = new SearchCondition();
+    condition.setBrandId(brandId);
+    condition.setKeyword(keyword);
+
+    List<Instrument> insts = instrumentService.getInst(condition);
+    assertThat(insts.size()).isGreaterThanOrEqualTo(1);
+    for(Instrument inst : insts){
+        assertThat(inst.getName()).startsWith(name);
+    }
+}
+@DisplayName("ギターの一覧を取得　条件:ブランドID,バイク名 該当なし")
+@ParameterizedTest
+@CsvSource({"01,Stra77","02,Paul5"})
+void test007(String brandId ,String keyword){
+    SearchCondition condition = new SearchCondition();
+    condition.setBrandId(brandId);
+    condition.setKeyword(keyword);
+
+    List<Instrument> insts = instrumentService.getInst(condition);
+    assertThat(insts.size()).isEqualTo(0);
+    {
+    }
+}
+@DisplayName("ギターの一覧を取得　条件:なし 全件該当")
+@Test
+void test008(){
+    SearchCondition condition = new SearchCondition();
+
+    List<Instrument> insts = instrumentService.getInst(condition);
+    assertThat(insts.size()).isEqualTo(5);
+    {
+    }
+}
+@DisplayName("ギターの一覧を取得　条件:ID")
+@ParameterizedTest
+@CsvSource({"01,Stratocaster","02,Les Paul"})
+void test009(Integer id ,String name){
+
+    Instrument inst = instrumentService.getId(id);
+    assertThat(inst.getName()).isEqualTo(name);
+    {
     }
 }
 }
