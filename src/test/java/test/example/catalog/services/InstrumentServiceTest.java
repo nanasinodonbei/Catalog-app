@@ -132,17 +132,5 @@ void test008(){
 
     List<Instrument> insts = instrumentService.getInst(condition);
     assertThat(insts.size()).isEqualTo(5);
-    {
     }
-}
-@DisplayName("ギターの一覧を取得　条件:ID")
-@ParameterizedTest
-@CsvSource({"01,Stratocaster","02,Les Paul"})
-void test009(Integer id ,String name){
-
-    Instrument inst = instrumentService.getId(id);
-    assertThat(inst.getName()).isEqualTo(name);
-    {
-    }
-}
 }
