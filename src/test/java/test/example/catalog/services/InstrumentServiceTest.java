@@ -1,6 +1,9 @@
 package test.example.catalog.services;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.zip.DataFormatException;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -8,6 +11,8 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Rollback;
+import org.springframework.transaction.annotation.Transactional;
 
 import test.example.catalog.beans.Instrument;
 import test.example.catalog.beans.SearchCondition;
@@ -16,6 +21,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
 public class InstrumentServiceTest {
+
+    DateTimeFormatter dtFormater = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm");
 
     @Autowired
     InstrumentService instrumentService;
@@ -133,4 +140,47 @@ void test008(){
     List<Instrument> insts = instrumentService.getInst(condition);
     assertThat(insts.size()).isEqualTo(5);
     }
+    
+@DisplayName("ギターの一覧を取得　条件:ID")
+@ParameterizedTest
+@CsvSource({"01,Stratocaster","02,Les Paul"})
+void test009(int id , String name){
+
+    Instrument inst = instrumentService.getInst(id);
+    assertThat(inst.getName()).isEqualTo(name);
 }
+
+@DisplayName("ギターの一覧を取得　条件:全項目確認")
+@Test
+void test010(){
+    Instrument insts = instrumentService.getInst(1);
+    assertThat(insts.getId()).isEqualTo(1);
+    assertThat(insts.getName()).isEqualTo("Stratocaster");
+    assertThat(insts.getMaterial()).isEqualTo("Alder");
+    assertThat(insts.getBody()).isEqualTo("Solid");
+    assertThat(insts.getPrice()).isEqualTo(120000);
+    assertThat(insts.getComment()).isEqualTo("人気のエレキギター。多様な音色が特徴。");
+    assertThat(insts.getInsDt().format(dtFormater)).isEqualTo(LocalDateTime.now().format(dtFormater));
+    assertThat(insts.getUpdDt()).isNull();
+    assertThat(insts.getBrand().getBrandId()).isEqualTo("01");
+
+
+    
+    }
+@DisplayName("バイク情報更新")
+@Test
+@Transactional
+@Rollback
+void test011(){
+    Instrument before = instrumentService.getInst(1);
+    before.setName("updateName");
+
+    instrumentService.save(before);
+
+    Instrument after = instrumentService.getInst(1);
+    assertThat(after.getName()).isEqualTo("updateName");
+
+    }
+}
+
+

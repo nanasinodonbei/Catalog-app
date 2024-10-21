@@ -12,3 +12,4 @@ public class SearchCondition {
     private String brandId;
     private String Keyword;
 }
+

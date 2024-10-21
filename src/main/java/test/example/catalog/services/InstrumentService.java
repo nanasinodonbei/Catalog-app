@@ -24,11 +24,16 @@ public class InstrumentService {
     public List<Instrument> getInst(SearchCondition condition) {
         return instrumentMapper.selectByCondition(condition);
     }
-    public List<Instrument> getInst(int id) {
+    public Instrument getInst(int id) {
         return instrumentMapper.selectById(id);
     }
 
     public List<Brand> getBrands(){
         return brandMapper.selectAll();
+    }
+
+    public int save (Instrument inst){
+
+        return instrumentMapper.update(inst);
     }
 }

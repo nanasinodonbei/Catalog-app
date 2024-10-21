@@ -4,20 +4,45 @@
   <resultMap id="instMap" type="test.example.catalog.beans.Instrument" autoMapping="true">
     <association property="brand" javaType="test.example.catalog.beans.Brand" autoMapping="true">
     </association>
-</resultMap>
+  </resultMap>
+
+  <!-- selectById クエリ -->
+  <select id="selectById" resultMap="instMap">
+    SELECT
+    instruments.id,
+    instruments.name,
+    instruments.material,
+    instruments.body,
+    instruments.price,
+    instruments.comment,
+    instruments.insDt,
+    instruments.updDt,
+    brand.brand_name,
+    brand.brand_id
+    FROM
+        instruments
+        LEFT OUTER JOIN brand 
+          ON instruments.brand_id = brand.brand_id
+    WHERE 
+        instruments.id = #{id}
+    ORDER BY
+        id;
+  </select>
+
+  <!-- selectByCondition クエリ -->
   <select id="selectByCondition" resultMap="instMap">
     SELECT
-    instruments.id
-    , instruments.name
-    , instruments.material
-    , instruments.body
-    , instruments.price
-    , instruments.comment
-    , brand.brand_name 
+    instruments.id,
+    instruments.name,
+    instruments.material,
+    instruments.body,
+    instruments.price,
+    instruments.comment,
+    brand.brand_name
     FROM
-        instruments 
+        instruments
         LEFT OUTER JOIN brand 
-          ON instruments.brand_id = brand.brand_id 
+          ON instruments.brand_id = brand.brand_id
     <where>
       <if test="brandId != null">
       AND instruments.brand_id = #{brandId}
@@ -28,5 +53,5 @@
     </where>
     ORDER BY
         id;
- </select>
+  </select>
 </mapper>
