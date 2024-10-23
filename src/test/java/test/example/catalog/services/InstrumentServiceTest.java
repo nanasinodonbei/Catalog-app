@@ -15,7 +15,7 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
 import test.example.catalog.beans.Instrument;
-import test.example.catalog.beans.SearchCondition;
+import test.example.catalog.beans.SearchForm;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -44,7 +44,7 @@ public class InstrumentServiceTest {
 @ParameterizedTest
 @CsvSource({"01,Fender","02,Gibson","03,Ibanez"})
 void test001(String brandId,String brandName){
-    SearchCondition condition = new SearchCondition();
+    SearchForm condition = new SearchForm();
     condition.setBrandId(brandId);
 
     List<Instrument> insts = instrumentService.getInst(condition);
@@ -57,7 +57,7 @@ void test001(String brandId,String brandName){
 @DisplayName("ギターの一覧を取得　条件:ブランドID 該当なし")
 @Test
 void test002(){
-    SearchCondition condition = new SearchCondition();
+    SearchForm condition = new SearchForm();
     condition.setBrandId("99");
 
     List<Instrument> insts = instrumentService.getInst(condition);
@@ -70,7 +70,7 @@ void test002(){
 @ParameterizedTest
 @CsvSource({"Stratocaster","Les Paul","Telecaster"})
 void test003(String name){
-    SearchCondition condition = new SearchCondition();
+    SearchForm condition = new SearchForm();
     condition.setKeyword(name);
 
     List<Instrument> insts = instrumentService.getInst(condition);
@@ -83,7 +83,7 @@ void test003(String name){
 @ParameterizedTest
 @CsvSource({"Strato,Stratocaster","Telecas,Telecaster","Paul,Les Paul"})
 void test004(String keyword,String name){
-    SearchCondition condition = new SearchCondition();
+    SearchForm condition = new SearchForm();
     condition.setKeyword(keyword);
 
     List<Instrument> insts = instrumentService.getInst(condition);
@@ -96,7 +96,7 @@ void test004(String keyword,String name){
 @DisplayName("ギターの一覧を取得　条件:ブランドID　該当なし")
 @Test
 void test005(){
-    SearchCondition condition = new SearchCondition();
+    SearchForm condition = new SearchForm();
     condition.setKeyword("存在しないギター");
 
     List<Instrument> insts = instrumentService.getInst(condition);
@@ -109,7 +109,7 @@ void test005(){
 @ParameterizedTest
 @CsvSource({"01,Strato,Stratocaster","01,Telecas,Telecaster","02,Paul,Les Paul"})
 void test006(String brandId ,String keyword,String name){
-    SearchCondition condition = new SearchCondition();
+    SearchForm condition = new SearchForm();
     condition.setBrandId(brandId);
     condition.setKeyword(keyword);
 
@@ -123,7 +123,7 @@ void test006(String brandId ,String keyword,String name){
 @ParameterizedTest
 @CsvSource({"01,Stra77","02,Paul5"})
 void test007(String brandId ,String keyword){
-    SearchCondition condition = new SearchCondition();
+    SearchForm condition = new SearchForm();
     condition.setBrandId(brandId);
     condition.setKeyword(keyword);
 
@@ -135,7 +135,7 @@ void test007(String brandId ,String keyword){
 @DisplayName("ギターの一覧を取得　条件:なし 全件該当")
 @Test
 void test008(){
-    SearchCondition condition = new SearchCondition();
+    SearchForm condition = new SearchForm();
 
     List<Instrument> insts = instrumentService.getInst(condition);
     assertThat(insts.size()).isEqualTo(5);

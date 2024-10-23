@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import lombok.extern.slf4j.Slf4j;
 import test.example.catalog.beans.Brand;
 import test.example.catalog.beans.Instrument;
-import test.example.catalog.beans.SearchCondition;
+import test.example.catalog.beans.SearchForm;
 import test.example.catalog.services.InstrumentService;
 
 @Slf4j
@@ -30,8 +30,9 @@ public class CatalogController {
     }
 
     @GetMapping("/inst")
-    public String inst(Model model) {
-        SearchCondition condition = new SearchCondition();
+    public String inst(SearchForm serchFrom,Model model) {
+        log.info("検索条件:{}", serchFrom);
+        SearchForm condition = new SearchForm();
         List<Brand> brands = new ArrayList<>();
         // brands.add(new Brand("1", "ギブソン"));
         // brands.add(new Brand("2", "SPR"));

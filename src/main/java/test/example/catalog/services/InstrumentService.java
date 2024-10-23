@@ -7,8 +7,8 @@ import org.springframework.stereotype.Service;
 
 import test.example.catalog.beans.Brand;
 import test.example.catalog.beans.Instrument;
-import test.example.catalog.beans.SearchCondition;
-import test.example.catalog.beans.SearchCondition;
+import test.example.catalog.beans.SearchForm;
+import test.example.catalog.beans.SearchForm;
 import test.example.catalog.mappers.BrandMapper;
 import test.example.catalog.mappers.InstrumentMapper;
 
@@ -21,7 +21,7 @@ public class InstrumentService {
     @Autowired
     BrandMapper brandMapper;
 
-    public List<Instrument> getInst(SearchCondition condition) {
+    public List<Instrument> getInst(SearchForm condition) {
         return instrumentMapper.selectByCondition(condition);
     }
     public Instrument getInst(int id) {

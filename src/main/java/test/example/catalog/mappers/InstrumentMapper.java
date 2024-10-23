@@ -6,7 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Update;
 
 import test.example.catalog.beans.Instrument;
-import test.example.catalog.beans.SearchCondition;
+import test.example.catalog.beans.SearchForm;
 
 @Mapper
 public interface InstrumentMapper {
@@ -17,7 +17,7 @@ public interface InstrumentMapper {
      * @param condition
      * @return
      */
-    public List<Instrument> selectByCondition(SearchCondition condition);
+    public List<Instrument> selectByCondition(SearchForm condition);
 
     /**
      * 主キーで検索をする
