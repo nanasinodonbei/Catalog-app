@@ -10,6 +10,6 @@ import lombok.Data;
 public class SearchForm {
     
     private String brandId;
-    private String Keyword;
+    private String keyword;
 }
 
