@@ -26,7 +26,7 @@ public class CatalogController {
     }
 
     @GetMapping("/inst")
-public String inst(@ModelAttribute("searchForm") SearchForm searchForm, Model model) {
+public String inst( SearchForm searchForm, Model model) {
     
     if (searchForm == null) {
         searchForm = new SearchForm();
@@ -41,4 +41,16 @@ public String inst(@ModelAttribute("searchForm") SearchForm searchForm, Model mo
     return "inst_catalog_list";
 }
 
+@GetMapping("/inst/reset")
+public String reset(SearchForm searchForm ,Model model){
+
+    model.addAttribute("brands", instrumentService.getBrands());
+    searchForm = new SearchForm();
+    return "inst_catalog_list";
 }
+
+
+
+}
+
+
