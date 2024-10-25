@@ -16,27 +16,30 @@
         </div>
     </nav>
     <div class="container">
+        <form th:action= "@{/inst}" method="get">
         <div class="row">
             <div class="col">
                 <div class="mb-3"></div>
                 <label for="brand" class="form-label">ギター</label>
-                <select class="form-select" id="brand" aria-label="Default select example">
+                <select class="form-select" id="brand" th:field="*{searchForm.brandId}" aria-label="Default select example">
+                    <option value=""></option>
                     <option th:each="brand : ${brands}" th:text="${brand.brandName}" th:value="${brand.brandId}" ></option>
                 </select>
             </div>
             <div class="col">
                 <div class="mb-3"></div>
                 <label for="keyword" class="form-label">キーワード検索</label>
-                <input type="te" class="form-control" id="keyword" placeholder="">
+                <input type="text" class="form-control" th:field="*{searchForm.keyword}" id="keyword" placeholder="ギター名など">
             </div>
         </div>
         <div class="row">
             <div class="col mt-1 d-flex flex-row-reverse">
                 <button type="button" class="btn btn-primary ">新規</button>
-                <button type="button" class="btn btn-secondary ms-1 me-1">削除</button>
-                <button type="button" class="btn btn-success">検索</button>
+                <a th:href="@{/inst/reset}" class="btn btn-secondary ms-1 me-1">削除</a>
+                <button type="submit" class="btn btn-success">検索</button>
             </div>
         </div>
+        </form>
         <div class="row">
             <div class="col">
                 <table class="table table-dark table-striped mt-3">

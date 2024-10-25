@@ -7,9 +7,9 @@ import lombok.Data;
  */
 
 @Data
-public class SearchCondition {
+public class SearchForm {
     
     private String brandId;
-    private String Keyword;
+    private String keyword;
 }
 
