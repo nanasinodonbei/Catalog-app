@@ -30,6 +30,7 @@
                 <div class="mb-3"></div>
                 <label for="keyword" class="form-label">キーワード検索</label>
                 <input type="text" class="form-control" th:field="*{searchForm.keyword}" id="keyword" placeholder="ギター名など">
+            <div class="text-danger" th:errors="*{searchForm.keyword}"></div>
             </div>
         </div>
         <div class="row">

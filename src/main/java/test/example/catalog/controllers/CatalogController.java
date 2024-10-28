@@ -3,6 +3,8 @@ package test.example.catalog.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,10 +28,14 @@ public class CatalogController {
     }
 
     @GetMapping("/inst")
-public String inst( SearchForm searchForm, Model model) {
+public String inst( @Validated SearchForm searchForm,BindingResult result,Model model) {
     
     if (searchForm == null) {
         searchForm = new SearchForm();
+
+    }else if (result.hasErrors()){
+
+        return "inst_catalog_list";
     }
 
     log.info("検索条件: {}", searchForm);

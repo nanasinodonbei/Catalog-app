@@ -1,5 +1,6 @@
 package test.example.catalog.beans;
 
+import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 /**
@@ -10,6 +11,8 @@ import lombok.Data;
 public class SearchForm {
     
     private String brandId;
+
+    @Size(min = 2, max = 10)
     private String keyword;
 }
 
