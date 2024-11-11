@@ -10,11 +10,12 @@
 </head>
 
 <body>
-    <nav class="navbar bg-primary" data-bs-theme="dark">
+    <nav class="navbar bg-primary data-bs-theme=dark mb-2" >
         <div class="container-fluid">
             <span class="navbar-brand mb-0 h1"　th:text="#{page.search}"><span>
         </div>
     </nav>
+    <div th:text ="${#temporals.format(datetime, 'yyyy年MM月dd日')}"></div>
     <div class="container">
         <form th:action= "@{/inst}" method="get">
         <div class="row">
@@ -61,7 +62,7 @@
                             <td th:text="*{name}"></td>
                             <td th:text="*{material}"></td>
                             <td th:text="*{body}"></td>
-                            <td th:text="*{price}"></td>
+                            <td th:text="*{#numbers.formatInteger(price,3,'COMMA')}"></td>
                             <td th:text="*{comment}"></td>
                         </tr>
                     </tbody>
