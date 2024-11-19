@@ -56,4 +56,12 @@ public class CatalogController {
         return "inst_catalog_list";
     }
 
+   
+    @GetMapping("/inst/{id}")
+    public String initUpdate(){
+
+        return "inst_catalog_update";
+
+    }
+
 }
