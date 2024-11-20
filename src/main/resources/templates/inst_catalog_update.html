@@ -18,7 +18,13 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                <label for="{brand.brandName}" class="form-label">メーカー</label>
+                <label for="brand" class="form-label">番号</label>
+                1
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <label for="brand" class="form-label">メーカー</label>
                 <select class="form-select" id="brand" aria-label="Default select example">
                     <option value=""></option>
                     <option th:each="brand : ${brands}" th:text="${brand.brandName}" th:value="${brand.brandId}">
@@ -30,7 +36,27 @@
                 <input type="text" class="form-control" id="name">
             </div>
             <div class="col">
-                123
+                <label for="material" class="form-label">材質</label>
+                <input type="text" class="form-control" id="material">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <label for="body" class="form-label">ボディ</label>
+                <input type="text" class="form-control" id="body">
+            </div>
+            <div class="col">
+                <label for="price" class="form-label">価格</label>
+                <input type="text" class="form-control" id="price">
+            </div>
+            <div class="col">
+                <label for="comment" class="form-label">コメント</label>
+                <input type="text" class="form-control" id="comment">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col text-end">
+                <button class="btn btn-primary  mt-2" type="submit">保存</button>
             </div>
         </div>
     </div>

@@ -58,8 +58,8 @@ public class CatalogController {
 
    
     @GetMapping("/inst/{id}")
-    public String initUpdate(){
-
+    public String initUpdate(Model model){
+        model.addAttribute("brands", instrumentService.getBrands());
         return "inst_catalog_update";
 
     }
