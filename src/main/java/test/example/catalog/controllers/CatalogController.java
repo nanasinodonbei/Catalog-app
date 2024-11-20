@@ -56,4 +56,12 @@ public class CatalogController {
         return "inst_catalog_list";
     }
 
+   
+    @GetMapping("/inst/{id}")
+    public String initUpdate(Model model){
+        model.addAttribute("brands", instrumentService.getBrands());
+        return "inst_catalog_update";
+
+    }
+
 }
