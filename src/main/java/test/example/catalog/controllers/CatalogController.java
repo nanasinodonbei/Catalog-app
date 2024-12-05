@@ -1,18 +1,25 @@
 package test.example.catalog.controllers;
 
+import java.time.LocalDateTime;
+
+
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import java.time.LocalDateTime;
 
 import lombok.extern.slf4j.Slf4j;
 import test.example.catalog.beans.SearchForm;
+import test.example.catalog.forms.InstFrom;
 import test.example.catalog.services.InstrumentService;
+import test.example.catalog.beans.Instrument;
 
 @Slf4j
 @Controller
@@ -58,8 +65,11 @@ public class CatalogController {
 
    
     @GetMapping("/inst/{id}")
-    public String initUpdate(Model model){
+    public String initUpdate(@PathVariable("id") Integer id,@ModelAttribute InstFrom instFrom,Model model){
         model.addAttribute("brands", instrumentService.getBrands());
+       
+        Instrument inst = instrumentService.getInst(id);
+        BeanUtils.copyProperties(inst, instFrom);
         return "inst_catalog_update";
 
     }
